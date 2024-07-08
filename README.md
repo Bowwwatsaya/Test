@@ -30,21 +30,28 @@ This project is written in R. To get started with this project, follow these ste
       library(sf)
       library(ggspatial)
       ```
-  4. Import datasets into RStudio.
+  4. **Import datasets into RStudio**
      ```
       gender_df <- read.csv("Names.csv")  
       airbnb_df <- read.csv("Airbnb_Open_Data.csv") 
-      ```
+     ```
 
-  5. Data cleaning:
-  - Our first aim is to identify each host's gender. We start by converting all the hosts' names and babies' names into lowercase. Next, create a list of male names and a list of female names. Find the names that appear on both lists and exclude them so we are left with only unique male and female names. After that, assign gender to the host based on their name (if the name is on the male list, then the host's gender will be male, and vice versa). Then assign the value of 1 to males and 0 to females.
-- Our next goal is to get rid of unused columns, clear all the observations that have missing values, and change all the numbers (character class) into a numeric class. We deleted the columns _"house rule"_ and _"license"_ because most of the observations didn't have them. Then we assigned _NA_ to all the blank spaces and excluded all the observations that contained _NA_. We also removed the dollar sign (_$_) and comma (_,_) so we can change the numbers into a numeric class.
- - Lastly, we created a new column named _building_age_ to show the age of each Airbnb.
+  5. **Data cleaning**:
+  - **Firstly, identify each host's gender.**
+    We start by converting all the hosts' names and babies' names into lowercase. Next, create a list of male names and a list of female names. Find the names that appear on both lists and exclude them so we are left with only unique male and female names. After that, assign gender to the host based on their name (if the name is on the male list, then the host's gender will be male, and vice versa). Then assign the value of 1 to males and 0 to females.
+  - **To get rid of unused columns**, clear all the observations that have missing values, and change all the numbers (character class) into a numeric class. We deleted the columns _"house rule"_ and _"license"_ because most of the observations didn't have them. Then we assigned _NA_ to all the blank spaces and excluded all the observations that contained _NA_. We also removed the dollar sign (_$_) and comma (_,_) so we can change the numbers into a numeric class.
+ - **Lastly, we created a new column named _building_age_** to show the age of each Airbnb.
+
   
- 4. Data Analysis:
- - We first create new columns for all numeric values by applying a logarithm function to solve the skewed data problem.
- - Identify independent variables (IV) and dependent variables (DV). We used _price_, _review.rate.number_, and _number.of.reviews_ as DVs, and the rest of the data will be IVs. Each of these DVs will have its own analysis model to see which IV influences it the most. In model 1, _price_ is the DV; in model 2, _review.rate.number_ is the DV; and in model 3, _number.of.reviews_ is the DV.
-  
+ 4. **Data Analysis**:
+ - **Firstly, create new columns for all numeric values** by applying a logarithm function to address the skewed data problem.
+ - **Then, identify independent variables (IVs) and dependent variables (DVs).** We use _price_, _review.rate.number_, and _number.of.reviews_ as DVs, while the rest of the data serve as IVs.
+ - Each of these DVs has its own analysis model to determine which IV influences it the most:
+
+   Model 1: _price_  is the DV
+   Model 2: _review.rate.number_ is the DV
+   Model 3: _number.of.reviews_ is the DV
+              
 5. Data Visualization:
  - Select the IV that has a significant coefficient from the model and create a linear regression model for only the DV and that particular IV again (e.g., _price_ vs. _room_type_).
  - Extract the coefficient value from the new regression model and plot it using a bar chart.
